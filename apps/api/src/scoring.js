@@ -30,6 +30,20 @@ export async function scoringQuiz(db, moduleId, answers){
         };
     });
     const score = Math.round((100 * result.filter((r) => r.correct).length) / rows.length);
-    return {score, passed: score >= PASSED_SCORE, result}
-        
+    return {score, passed: score >= PASSED_SCORE, result}       
 }
+
+
+//TESTING
+import pg from "pg"
+process.loadEnvFile(new URL("../.env", import.meta.url))
+const db = new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+const answers_test = [
+    { question_id: "00000000-0000-4000-8000-000000000100", option_id: "00000000-0000-4000-8000-000000000101" },
+    { question_id: "00000000-0000-4000-8000-000000000200", option_id: "00000000-0000-4000-8000-000000000203" },
+    { question_id: "00000000-0000-4000-8000-000000000300", option_id: "00000000-0000-4000-8000-000000000304" }
+]
+const passed = await scoringQuiz(db, 0, answers_test)
+console.log(passed)
