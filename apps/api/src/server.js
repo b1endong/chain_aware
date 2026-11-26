@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import rateLimit from "express-rate-limit";
 import pg from "pg";
 import { authRouter } from "./routes/auth.js"
+import { walletRouter } from "./routes/wallet.js";
 
 if (!process.env.DATABASE_URL) {
   throw new Error("Thiếu DATABASE_URL trong .env");
@@ -25,7 +26,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.use(express.json());
-app.use("/api", authRouter(db));
+app.use("/api", authRouter(db), walletRouter(db));
 
 app.use((err, req, res, next) => {
   console.error(err);
