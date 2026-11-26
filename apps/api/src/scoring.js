@@ -33,17 +33,31 @@ export async function scoringQuiz(db, moduleId, answers){
     return {score, passed: score >= PASSED_SCORE, result}       
 }
 
+export async function attemptResults(db, userId, moudleId, graded){
+    const {rows} = await db.query(
+        `INSERT INTO quiz_attempts (user_id, moudle_id, score, passed) 
+        VALUES ($1, $2, $3, $3) RETURNING id` [userId, moudleId, graded.score, graded.passed]
+    )
+    const attempt_id = rows[0].id
+    for (const r of graded.results){
+        await db.query(
+            `INSERT INTO attempt_answers (attempt_id, question_id, option_id, correct)
+            VALUES ($1, $2, $3, $4)` [attempt_id, r.question_id, r.option_id, r.correct]
+        )
+    }
+}
+
 
 //TESTING
-import pg from "pg"
-process.loadEnvFile(new URL("../.env", import.meta.url))
-const db = new pg.Pool({
-  connectionString: process.env.DATABASE_URL,
-});
-const answers_test = [
-    { question_id: "00000000-0000-4000-8000-000000000100", option_id: "00000000-0000-4000-8000-000000000101" },
-    { question_id: "00000000-0000-4000-8000-000000000200", option_id: "00000000-0000-4000-8000-000000000203" },
-    { question_id: "00000000-0000-4000-8000-000000000300", option_id: "00000000-0000-4000-8000-000000000304" }
-]
-const passed = await scoringQuiz(db, 0, answers_test)
-console.log(passed)
+// import pg from "pg"
+// process.loadEnvFile(new URL("../.env", import.meta.url))
+// const db = new pg.Pool({
+//   connectionString: process.env.DATABASE_URL,
+// });
+// const answers_test = [
+//     { question_id: "00000000-0000-4000-8000-000000000100", option_id: "00000000-0000-4000-8000-000000000101" },
+//     { question_id: "00000000-0000-4000-8000-000000000200", option_id: "00000000-0000-4000-8000-000000000203" },
+//     { question_id: "00000000-0000-4000-8000-000000000300", option_id: "00000000-0000-4000-8000-000000000304" }
+// ]
+// const passed = await scoringQuiz(db, 0, answers_test)
+// console.log(passed)

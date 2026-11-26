@@ -21,6 +21,7 @@
   "author": "",
   "dependencies": {
     "argon2": "^0.45.2",
+    "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "ethers": "^6.17.0",

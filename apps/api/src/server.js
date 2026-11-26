@@ -4,7 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import rateLimit from "express-rate-limit";
 import pg from "pg";
-import { learnerRouter } from "./routes.js";
+import { authRouter } from "./routes/auth.js"
 
 if (!process.env.DATABASE_URL) {
   throw new Error("Thiếu DATABASE_URL trong .env");
@@ -25,8 +25,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.use(express.json());
-// TODO: app.use("/api/auth", authRouter(db)) khi đã viết router đăng nhập
-app.use("/api", learnerRouter(db));
+app.use("/api", authRouter(db));
 
 app.use((err, req, res, next) => {
   console.error(err);
