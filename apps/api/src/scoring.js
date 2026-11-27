@@ -20,7 +20,7 @@ export async function scoringQuiz(db, moduleId, answers){
     // Map lựa chọn của candidate
     const picked = new Map(answers.map((a) => [a.question_id, a.option_id]));
     // So sánh lựa chọn của candidate với đáp án đúng (câu bỏ trống tính là sai)
-    const result = rows.map((r) => {
+    const results = rows.map((r) => {
         const option_id = picked.get(r.question_id) ?? null;
         return {
             question_id: r.question_id,
@@ -29,22 +29,24 @@ export async function scoringQuiz(db, moduleId, answers){
             correct: option_id === r.correct_option,
         };
     });
-    const score = Math.round((100 * result.filter((r) => r.correct).length) / rows.length);
-    return {score, passed: score >= PASSED_SCORE, result}       
+    const score = Math.round((100 * results.filter((r) => r.correct).length) / rows.length);
+    return {score, passed: score >= PASSED_SCORE, results}       
 }
 
-export async function attemptResults(db, userId, moudleId, graded){
+export async function attemptResults(db, userId, moduleId, graded){
+
     const {rows} = await db.query(
-        `INSERT INTO quiz_attempts (user_id, moudle_id, score, passed) 
-        VALUES ($1, $2, $3, $3) RETURNING id` [userId, moudleId, graded.score, graded.passed]
+        `INSERT INTO quiz_attempts (user_id, module_id, score, passed) 
+        VALUES ($1, $2, $3, $4) RETURNING id`, [userId, moduleId, graded.score, graded.passed]
     )
     const attempt_id = rows[0].id
     for (const r of graded.results){
         await db.query(
-            `INSERT INTO attempt_answers (attempt_id, question_id, option_id, correct)
-            VALUES ($1, $2, $3, $4)` [attempt_id, r.question_id, r.option_id, r.correct]
+            `INSERT INTO attempt_answers (attempt_id, question_id, option_id, is_correct)
+            VALUES ($1, $2, $3, $4)`, [attempt_id, r.question_id, r.option_id, r.correct]
         )
     }
+    return attempt_id
 }
 
 

@@ -46,11 +46,11 @@ export function toJson(value) {
 
 //TESTING
 
-const learner = "0x70997970C51812dc3A010C7d01b50e0d17dc79C8" // địa chỉ ví mẫu (anvil #1)
-const {signature, value} = await signCompletion(learner, 1, 80)
-const recovered = verifyTypedData(domain, type, value, signature)
-console.log({value: toJson(value), signature})
-console.log("attester :", attester.address)
-console.log("recovered:", recovered, recovered === attester.address ? "✔ khớp" : "✘ KHÔNG khớp")
+// const learner = "0x70997970C51812dc3A010C7d01b50e0d17dc79C8" // địa chỉ ví mẫu (anvil #1)
+// const {signature, value} = await signCompletion(learner, 1, 80)
+// const recovered = verifyTypedData(domain, type, value, signature)
+// console.log({value: toJson(value), signature})
+// console.log("attester :", attester.address)
+// console.log("recovered:", recovered, recovered === attester.address ? "✔ khớp" : "✘ KHÔNG khớp")
 
    
