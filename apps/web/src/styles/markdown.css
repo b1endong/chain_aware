@@ -1,0 +1,126 @@
+/* =========================================================================
+   Nội dung bài học (render từ modules.body_md)
+   ========================================================================= */
+.prose {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: var(--text);
+}
+.prose > :first-child {
+  margin-top: 0;
+}
+.prose h1 {
+  margin: 0 0 16px;
+  font-size: 26px;
+}
+.prose h2 {
+  margin: 40px 0 14px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 20px;
+  scroll-margin-top: calc(var(--header-h) + 16px);
+}
+.prose > h2:first-child,
+.prose > h1 + h2 {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.prose h3 {
+  margin: 26px 0 10px;
+  font-size: 16.5px;
+}
+.prose p {
+  margin: 0 0 14px;
+}
+.prose ul,
+.prose ol {
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+.prose li {
+  margin: 5px 0;
+}
+.prose li::marker {
+  color: var(--text-subtle);
+}
+.prose strong {
+  font-weight: 700;
+  color: var(--text);
+}
+.prose code {
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--surface-2);
+  font-size: 0.85em;
+  color: var(--chain-text);
+  overflow-wrap: anywhere;
+}
+.prose blockquote {
+  margin: 20px 0;
+  padding: 14px 18px;
+  border-left: 3px solid var(--warning);
+  border-radius: 0 10px 10px 0;
+  background: var(--warning-soft);
+  color: var(--text);
+}
+.prose blockquote p:last-child {
+  margin: 0;
+}
+.prose hr {
+  margin: 28px 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+/* Bảng */
+.prose-table {
+  margin: 4px 0 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow-x: auto;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.prose th {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+.prose td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.prose tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Checklist (- [ ] ...) */
+.prose .contains-task-list {
+  padding-left: 0;
+  list-style: none;
+}
+.prose .task-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 8px 0;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-2);
+  line-height: 1.55;
+}
+.prose .task-list-item input {
+  margin-top: 4px;
+  accent-color: var(--success);
+}

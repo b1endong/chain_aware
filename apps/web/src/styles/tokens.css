@@ -1,0 +1,104 @@
+/* =========================================================================
+   Design tokens — đổi màu / font / bo góc cho toàn bộ app tại đây
+   ========================================================================= */
+:root {
+  color-scheme: light;
+
+  --font-sans: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+  /* Bề mặt */
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --surface-2: #f1f4f8;
+  --surface-3: #e6eaf0;
+  --border: #e1e6ed;
+  --border-strong: #cbd3de;
+
+  /* Chữ */
+  --text: #121a2b;
+  --text-muted: #525e75;
+  --text-subtle: #7d889c;
+
+  /* Thương hiệu */
+  --primary: #2f5bea;
+  --primary-hover: #2449c8;
+  --primary-soft: #e9efff;
+  --primary-text: #1f45c4;
+  --on-primary: #ffffff;
+
+  /* On-chain / Web3 */
+  --chain: #6a46e8;
+  --chain-soft: #efeafe;
+  --chain-text: #5232c8;
+
+  /* Trạng thái */
+  --success: #13805b;
+  --success-soft: #e2f4ec;
+  --success-text: #0f6b4c;
+  --warning: #b45309;
+  --warning-soft: #fdf2df;
+  --warning-text: #92400e;
+  --danger: #c4302b;
+  --danger-soft: #fdeceb;
+  --danger-text: #a42521;
+
+  /* Khu vực tối (hero, auth, chứng chỉ) — giống nhau ở cả 2 chế độ */
+  --hero-bg: #0b1222;
+  --hero-text: #aab6cc;
+
+  /* Hình khối */
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow: 0 1px 3px rgba(16, 24, 40, 0.08), 0 4px 12px rgba(16, 24, 40, 0.05);
+  --shadow-lg: 0 16px 40px -12px rgba(16, 24, 40, 0.22);
+  --focus: 0 0 0 3px rgba(47, 91, 234, 0.3);
+
+  --container: 1180px;
+  --header-h: 64px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --bg: #0a0e16;
+    --surface: #111724;
+    --surface-2: #171f2f;
+    --surface-3: #1f293c;
+    --border: #222c40;
+    --border-strong: #2f3b54;
+
+    --text: #e7ecf5;
+    --text-muted: #a1abbf;
+    --text-subtle: #737f96;
+
+    --primary: #4d71f2;
+    --primary-hover: #6385ff;
+    --primary-soft: rgba(99, 133, 255, 0.14);
+    --primary-text: #a3b7ff;
+    --on-primary: #ffffff;
+
+    --chain: #8a6cf7;
+    --chain-soft: rgba(155, 125, 255, 0.15);
+    --chain-text: #c3b2ff;
+
+    --success: #2fb37f;
+    --success-soft: rgba(52, 194, 138, 0.14);
+    --success-text: #6fdcae;
+    --warning: #e19a34;
+    --warning-soft: rgba(240, 164, 58, 0.14);
+    --warning-text: #f5c072;
+    --danger: #e5554c;
+    --danger-soft: rgba(242, 104, 95, 0.14);
+    --danger-text: #ff9a92;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 16px 40px -12px rgba(0, 0, 0, 0.7);
+    --focus: 0 0 0 3px rgba(99, 133, 255, 0.4);
+  }
+}
