@@ -13,7 +13,6 @@ export function authController(db) {
         if (user) return res.status(409).json({error: "already_registered"})
 
         const stored = await hashPassword(password)
-        //console.log(stored)
         const {rows: [new_user]} = await db.query(
             `INSERT INTO users(username, email, password_hash)
             VALUES ($1, $2, $3)

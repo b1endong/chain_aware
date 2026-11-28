@@ -32,7 +32,7 @@ export function requireAuth(role) {
     if (!token) return res.status(401).json({ error: "unauthenticated" });
     try {
       // Khóa cứng thuật toán để chặn tấn công đổi "alg"
-      const user = jwt.verify(token, jwtSecret(), { algorithms: ["HS256"] });
+      const user = jwt.verify(token, jwtSecret(), { algorithms: ["HS256"] })
       if (role && user.role !== role) return res.status(403).json({ error: "forbidden" });
       req.user = user; // { id, role }
       next();
